@@ -37,7 +37,7 @@ juriTimes([HP|TP], JuriMember, [HT|TT], Total) :-
 	juriTimes(TP, JuriMember, TT, Total1),
 	Total is Total1 + HT.
 	
-nth(1, [H|_], H) :- !.	
+nth(1, [H|_], H).	
 nth(Index, [_|T], Element) :-
 	Index1 is Index - 1,
 	nth(Index1, T, Element).
@@ -102,10 +102,9 @@ indexesWhereEqual(List, Value, Indexes) :-
 	indexesWhereEqual(List, Value, 1, Indexes).
 	
 indexesWhereEqual([], _, _, []).
-indexesWhereEqual([H|T], H, Starting, Indexes) :-
+indexesWhereEqual([H|T], H, Starting, [Starting | Indexes1]) :-
 	Starting1 is Starting + 1,
-	indexesWhereEqual(T, H, Starting1, Indexes1),
-	Indexes = [Starting | Indexes1].
+	indexesWhereEqual(T, H, Starting1, Indexes1).
 indexesWhereEqual([H|T], Value, Starting, Indexes) :-
 	H \= Value,
 	Starting1 is Starting + 1,
