@@ -115,3 +115,41 @@ averageAge(Game, AverageAge) :-
     sum(Ages, Sum),
     length(Ages, Length),
     AverageAge is Sum / Length.
+
+% 9)
+
+:-use_module(library(lists)).
+
+effectiveness(Player, Game, Res) :-
+    played(Player, Game, Hours, Percent),
+    Res is Percent / Hours.
+
+maxValues([], _, []).
+maxValues([Max-Value|T], Max, [Value|TR]) :-
+    maxValues(T, Max, TR), !.
+maxValues(_List1, _Max, []).
+
+mostEffectivePlayers(Game, List) :-
+    findall(Eff-Player, effectiveness(Player, Game, Eff), L),
+    sort(L, L1),
+    reverse(L1, L2),
+
+    L2 = [Max-_|_], % idc funk you
+    maxValues(L2, Max, List).
+
+% 10)
+
+what(Username) :-
+    player(_Name, Username, Age), !,
+    \+ (played(Username, Game, _Hours, _Percent),
+        game(Game, _Categories, MinAge),
+        MinAge > Age).
+
+% 11 12)
+% im without paciencia
+
+% 14)
+% the concept of distance makes literally no sense.
+% the first node in common between brazil and ireland is the root node, which height is 7.
+% anyway stalker, I know that this makes sense somehow, I'm just not getting and I sincerely don't want to.
+% it do be late and I do be very tired, 
