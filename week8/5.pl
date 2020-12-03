@@ -38,18 +38,20 @@ guards(Positions) :-
     sees(G11, L11),
     sees(G12, L12),
 
-    % optimizations (still slow af)
-    G12 #>= G11,
-    G11 #>= G10,
-    G10 #>= G9,
-    G9 #>= G8,
-    G8 #>= G7,
-    G7 #>= G6,
-    G6 #>= G5,
-    G5 #>= G4,
-    G4 #>= G3,
-    G3 #>= G2,
-    G2 #>= G1,
+    % optimizations (still slowy)
+    fd_batch([
+        G12 #>= G11,
+        G11 #>= G10,
+        G10 #>= G9,
+        G9 #>= G8,
+        G8 #>= G7,
+        G7 #>= G6,
+        G6 #>= G5,
+        G5 #>= G4,
+        G4 #>= G3,
+        G3 #>= G2,
+        G2 #>= G1
+    ]),
 
     % write(Positions), nl, % this is for debug and because its fun watching them go
     append_lists([L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12], Res),

@@ -1,12 +1,18 @@
 :-use_module(library(clpfd)).
 
-zero_zeros(Vars) :-
-    Vars = [X, Y],
-    X in 0..1000000000,
-    Y in 0..1000000000,
+zero_zeros(X, Y) :-
+    domain([X, Y], 1, 1000000000),
 
-    X mod 10 #\= 0,
-    Y mod 10 #\= 0,
-    X * Y #= 1000000000,
+    % limlit repetitions, conheses
+    fd_batch([X #> Y, X * Y #= 1000000000]),
     
-    labeling([], Vars).
+    doesnt_contain(0, X),
+    doesnt_contain(0, Y),
+    
+    labeling([], [X, Y]).
+
+doesnt_contain(_, 0).
+doesnt_contain(Digit, Number) :-
+    Number mod 10 #\= Digit,
+    NextNumber #= Number // 10,
+    doesnt_contain(Digit, NextNumber).

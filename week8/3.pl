@@ -8,9 +8,11 @@ queens4(Queens) :-
     domain(Queens, 1, 16),
 
     % faster boy
-    Q1 #< Q2,
-    Q2 #< Q3,
-    Q3 #< Q4,
+    fd_batch(
+        [Q1 #< Q2,
+        Q2 #< Q3,
+        Q3 #< Q4]
+    ),
 
     safe(Q1, Q2, 4),
     safe(Q1, Q3, 4),
