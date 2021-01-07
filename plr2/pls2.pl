@@ -15,7 +15,7 @@ three_musicians(Instruments) :-
     element(2, Instruments, NotPianist), NotPianist #= 3,
     % pinanist practices alone on tuesdays
     element(Pianist, Days, 1), element(Pianist, Instruments, 3),
-    % joao practices with violinist on thursdays
+    % joao practices with violinist (NOT VIOLONCELIST GET YOUR INSTRUMENTS RIGHT) on thursdays
         % joao practices on thursdays
         element(1, Days, 2),
         % joao \= violinist
