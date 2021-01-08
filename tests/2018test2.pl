@@ -1,6 +1,23 @@
 :- use_module(library(clpfd)).
 :- use_module(library(lists)).
 
+% 3)
+
+prog2(N, M, L1, L2) :-
+    length(L1, N),
+    N1 is N-1, length(L2, N1),
+    all_distinct(L1),
+    all_distinct(L2),
+    domain(L1, 1, M),
+    domain(L2, 1, M),
+    check(L1, L2),
+    labeling([], L1).
+
+check([_], []).
+check([A,B|R], [X|XS]) :-
+    A+B #= X,
+    check([B|R], XS).
+
 % 4)
 
 gym_pairs(Men, Women, Delta, Pairs) :-
@@ -29,3 +46,6 @@ build_pairs([], _, []).
 build_pairs([H|T], WomanIndex, [H-WomanIndex|TPairs]) :-
     WI1 is WomanIndex + 1,
     build_pairs(T, WI1, TPairs).
+
+% 5)
+
