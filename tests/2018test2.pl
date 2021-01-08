@@ -46,6 +46,3 @@ build_pairs([], _, []).
 build_pairs([H|T], WomanIndex, [H-WomanIndex|TPairs]) :-
     WI1 is WomanIndex + 1,
     build_pairs(T, WI1, TPairs).
-
-% 5)
-
